@@ -1,1 +1,5 @@
-# vis
+# LTvis
+___________________________________________________________________
+
+Land cover attribute data visualization and download web application
+___________________________________________________________________

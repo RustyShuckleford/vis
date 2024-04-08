@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title id="title"></title>
+    <meta charset="UTF-8">
+    <meta http-equiv="cache-control" content="no-cache">
+    <link rel="icon" href="resources/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="vendors/w3.css">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="resources/js/layout.js"></script>
+    <script src="resources/data/metadata.json"></script>
+    <link rel="stylesheet" href="resources/css/metaD.css">
+</head>
+<body>
+
+<div class="w3-content w3-container w3-padding-64">
+    <div style="background-color: white">
+        <div class="w3-container" style="margin-top:20px;">
+            <div  class='center'>
+                <h1 id="tit" style="color:#3c3c3c;"></h1>
+            </div>
+        </div>
+
+        <div>
+            <div id="vid" class='center'>
+
+            </div>
+        </div>
+
+        <br>
+
+	<div class="w3-card-4 test" style="width:100%;     background: white;">
+
+            <div id="dis" class="w3-container">
+
+            </div>
+        </div>
+
+        <div id="table">
+
+        </div>
+    </div>
+</div>
+<script>
+
+   $('document').ready(function (){
+
+        var queryString = decodeURIComponent(window.location.search);
+        queryString = queryString.substring(1);
+        var queries = queryString.split("para1=");
+
+        $.getJSON( "resources/data/metadata.json", function( data ) {
+            var stuff = data;
+            console.log(stuff[0].title)
+
+            if (queries[1] == 'biomassLI,') {
+
+                var x = stuff[0];
+                document.body.style.backgroundImage = "url(resources/images/metadata/biomas.JPG)";
+
+            } else if (queries[1] == 'canopycoverLI,') {
+
+                var x = stuff[1];
+                document.body.style.backgroundImage = "url(resources/images/metadata/CC.JPG)";
+
+            } else if (queries[1] == 'impervcoverLI,') {
+               var x = stuff[2];
+                document.body.style.backgroundImage = "url(resources/images/metadata/ims.JPG)";
+
+
+            } else if (queries[1] == 'landcoverLI,') {
+
+                var x = stuff[3];
+                document.body.style.backgroundImage = "url(resources/images/metadata/landC.JPG)";
+
+            }else if (queries[1] == 'lt-stem_biomass_nbcd_v0.1_median,') {
+
+                var x = stuff[4];
+                document.body.style.backgroundImage = "url(resources/images/metadata/biomas.JPG)";
+
+            } else if (queries[1] == 'lt-stem_forest_canopy_cover_nlcd_v0.1_mean,') {
+
+                var x = stuff[5];
+                document.body.style.backgroundImage = "url(resources/images/metadata/CC.JPG)";
+
+            } else if (queries[1] == 'lt-stem_impervious_surface_nlcd_v0.1_median,') {
+
+                var x = stuff[6];
+                document.body.style.backgroundImage = "url(resources/images/metadata/ims.JPG)";
+
+
+            } else if (queries[1] == 'lt_landcover_vote,') {
+
+                var x = stuff[7];
+                document.body.style.backgroundImage = "url(resources/images/metadata/landC.JPG)";
+
+
+            } else {
+                document.getElementById('tit').innerHTML += "Under Construction"
+                document.getElementById('dis').innerHTML += "This meta data page is under construction, and we apologize for the inconvenience."
+            }
+
+            document.getElementById('title').innerHTML += x.name;
+            document.getElementById('tit').innerHTML += x.title;
+            document.getElementById('vid').innerHTML += x.video;
+            document.getElementById('dis').innerHTML += x.des;
+            document.getElementById('table').innerHTML += x.table;
+         });
+    });
+</script>
+</body>
+
+</html>
+
